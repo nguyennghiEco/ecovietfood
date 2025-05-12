@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/alexcao/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/alexcao/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/driver/android/app/.cxx/Debug/1nt276ir/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/alexcao/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/driver/android/app/.cxx/Debug/1nt276ir/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

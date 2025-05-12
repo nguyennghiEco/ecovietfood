@@ -1,19 +1,99 @@
 {
   "project_info": {
-    "project_number": "YOUR_PROJECT_NUMBER",
-    "firebase_url": "https://YOUR_PROJECT_ID.firebaseio.com",
-    "project_id": "YOUR_PROJECT_ID",
-    "storage_bucket": "YOUR_PROJECT_ID.appspot.com"
+    "project_number": "234208421794",
+    "firebase_url": "https://ecovietfood-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ecovietfood",
+    "storage_bucket": "ecovietfood.firebasestorage.app"
   },
-  "api_key": [
+  "client": [
     {
-      "current_key": "YOUR_FIREBASE_API_KEY"
+      "client_info": {
+        "mobilesdk_app_id": "1:234208421794:android:d75149ecdb4a43830674fb",
+        "android_client_info": {
+          "package_name": "com.foodies.customer.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234208421794-cb39qrom6a2cc432a9pksun2ujnfmlfq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.foodies.customer.android",
+            "certificate_hash": "2a015d9b3b556cd09b02a3143912e6f3cf46af57"
+          }
+        },
+        {
+          "client_id": "234208421794-ct2isb5rhkhabmbj3bh1vpjs0241fl31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMkQopoaSKs--0x045QvP4f8-gUMSauLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234208421794-ct2isb5rhkhabmbj3bh1vpjs0241fl31.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "234208421794-hvnsh9jb3jbit5nl7kmt0t6pa7j5nqa2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.foodies.restaurant.ios"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234208421794:android:9ae764f2062ea9710674fb",
+        "android_client_info": {
+          "package_name": "com.foodies.restaurant.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234208421794-phhctk9pbb5kb05gtsdlktibafqreq0f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.foodies.restaurant.android",
+            "certificate_hash": "2a015d9b3b556cd09b02a3143912e6f3cf46af57"
+          }
+        },
+        {
+          "client_id": "234208421794-ct2isb5rhkhabmbj3bh1vpjs0241fl31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMkQopoaSKs--0x045QvP4f8-gUMSauLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234208421794-ct2isb5rhkhabmbj3bh1vpjs0241fl31.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "234208421794-hvnsh9jb3jbit5nl7kmt0t6pa7j5nqa2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.foodies.restaurant.ios"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
-  "services": {
-    "appinvite_service": {
-      "other_platform_oauth_client": []
-    }
-  },
   "configuration_version": "1"
 }

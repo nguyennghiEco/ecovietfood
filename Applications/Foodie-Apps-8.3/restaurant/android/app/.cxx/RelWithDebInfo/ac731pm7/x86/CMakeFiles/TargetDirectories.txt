@@ -1,0 +1,2 @@
+/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/restaurant/android/app/.cxx/RelWithDebInfo/ac731pm7/x86/CMakeFiles/edit_cache.dir
+/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/restaurant/android/app/.cxx/RelWithDebInfo/ac731pm7/x86/CMakeFiles/rebuild_cache.dir

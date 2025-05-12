@@ -20,13 +20,8 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    name: 'default',
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  await Firebase.initializeApp(
-    name: 'stagging',
-    options: DefaultFirebaseOptions.currentPlatform,
+    // name: 'default',
+    // options: DefaultFirebaseOptions.currentPlatform,
   );
 
   await FirebaseAppCheck.instance.activate(

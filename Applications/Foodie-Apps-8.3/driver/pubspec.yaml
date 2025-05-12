@@ -92,6 +92,7 @@ dependencies:
   flutter_paypal: ^0.2.1
   http: any
   geolocator: ^13.0.4
+  rename_app: ^1.6.3
 
 dependency_overrides:
   webview_flutter: ^4.8.0

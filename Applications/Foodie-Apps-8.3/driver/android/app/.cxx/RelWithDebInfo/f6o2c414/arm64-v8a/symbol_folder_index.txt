@@ -1,0 +1,1 @@
+/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/driver/build/app/intermediates/cxx/RelWithDebInfo/f6o2c414/obj/arm64-v8a

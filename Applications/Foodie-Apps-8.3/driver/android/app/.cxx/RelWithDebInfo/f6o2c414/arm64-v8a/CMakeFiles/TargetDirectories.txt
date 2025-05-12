@@ -1,0 +1,2 @@
+/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/driver/android/app/.cxx/RelWithDebInfo/f6o2c414/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/alexcao/workspace/outsource/ecovietfood/Applications/Foodie-Apps-8.3/driver/android/app/.cxx/RelWithDebInfo/f6o2c414/arm64-v8a/CMakeFiles/rebuild_cache.dir

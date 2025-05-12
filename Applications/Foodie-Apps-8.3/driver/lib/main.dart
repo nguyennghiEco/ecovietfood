@@ -24,7 +24,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized(); //<= the key is here
     FlutterError.onError = (FlutterErrorDetails errorDetails) {};
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+      //options: DefaultFirebaseOptions.currentPlatform,
     );
     await FirebaseAppCheck.instance.activate(
       webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),

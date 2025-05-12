@@ -1144,7 +1144,7 @@ class HomeScreen extends StatelessWidget {
                     underline: const SizedBox(),
                     value: controller.selectedOrderTypeValue.value.tr,
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items: <String>['Delivery', 'TakeAway'].map((String value) {
+                    items: <String>['Vận chuyển', 'Mang đi'].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(

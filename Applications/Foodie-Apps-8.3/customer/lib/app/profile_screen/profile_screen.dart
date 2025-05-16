@@ -6,6 +6,7 @@ import 'package:customer/app/dine_in_booking/dine_in_booking_screen.dart';
 import 'package:customer/app/dine_in_screeen/dine_in_screen.dart';
 import 'package:customer/app/edit_profile_screen/edit_profile_screen.dart';
 import 'package:customer/app/gift_card/gift_card_screen.dart';
+import 'package:customer/app/purchase_screen/purchase_screen.dart';
 import 'package:customer/app/refer_friend_screen/refer_friend_screen.dart';
 import 'package:customer/app/terms_and_condition/terms_and_condition_screen.dart';
 import 'package:customer/constant/constant.dart';
@@ -101,6 +102,9 @@ class ProfileScreen extends StatelessWidget {
                                       }),
                                     cardDecoration(themeChange, controller, "assets/images/ic_gift.svg", "Gift Card".tr, () {
                                       Get.to(const GiftCardScreen());
+                                    }),
+                                    cardDecoration(themeChange, controller, "assets/images/referal_top.svg", "Nạp tiền", () {
+                                      Get.to(const PurchaseScreen());
                                     }),
                                   ],
                                 ),
@@ -448,6 +452,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             SvgPicture.asset(
               image,
+              height: 24,
               colorFilter: title == "Log In" ? const ColorFilter.mode(AppThemeData.success500, BlendMode.srcIn) : null,
             ),
             const SizedBox(

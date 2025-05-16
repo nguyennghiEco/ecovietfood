@@ -91,7 +91,7 @@ class Constant {
   static List<VendorModel>? restaurantList = [];
 
   static bool isSubscriptionModelApplied = false;
-  static bool isSelfDeliveryFeature=false;
+  static bool isSelfDeliveryFeature = false;
 
   static MailSettings? mailSettings;
   static String walletTopup = "wallet_topup";
@@ -118,11 +118,13 @@ class Constant {
   static bool isEnableAdsFeature = true;
 
   static String amountShow({required String? amount}) {
-    if (currencyModel!.symbolAtRight == true) {
-      return "${double.parse(amount.toString()).toStringAsFixed(currencyModel!.decimalDigits ?? 0)} ${currencyModel!.symbol.toString()}";
-    } else {
-      return "${currencyModel!.symbol.toString()} ${amount == null || amount.isEmpty ? "0.0" : double.parse(amount.toString()).toStringAsFixed(currencyModel!.decimalDigits ?? 0)}";
-    }
+    // if (currencyModel!.symbolAtRight == true) {
+    //   return "${double.parse(amount.toString()).toStringAsFixed(currencyModel!.decimalDigits ?? 0)} ${currencyModel!.symbol.toString()}";
+    // } else {
+    //   return "${currencyModel!.symbol.toString()} ${amount == null || amount.isEmpty ? "0.0" : double.parse(amount.toString()).toStringAsFixed(currencyModel!.decimalDigits ?? 0)}";
+    // }
+    final vietNamCurrency = NumberFormat.currency(locale: 'vi_VN', symbol: currencyModel!.symbol.toString());
+    return vietNamCurrency.format(double.parse(amount.toString()));
   }
 
   static Color statusColor({required String? status}) {
@@ -153,35 +155,21 @@ class Constant {
     String commission = "0";
     if (adminCommission!.isEnabled == true) {
       if (vendorModel.adminCommission == null) {
-        if (adminCommission!.commissionType!.toLowerCase() ==
-                "Percent".toLowerCase() ||
-            adminCommission!.commissionType?.toLowerCase() ==
-                "Percentage".toLowerCase()) {
-          commission = (double.parse(price) +
-                  (double.parse(price) *
-                      double.parse(adminCommission!.amount.toString()) /
-                      100))
-              .toString();
+        if (adminCommission!.commissionType!.toLowerCase() == "Percent".toLowerCase() ||
+            adminCommission!.commissionType?.toLowerCase() == "Percentage".toLowerCase()) {
+          commission =
+              (double.parse(price) + (double.parse(price) * double.parse(adminCommission!.amount.toString()) / 100)).toString();
         } else {
-          commission = (double.parse(price) +
-                  double.parse(adminCommission!.amount.toString()))
-              .toString();
+          commission = (double.parse(price) + double.parse(adminCommission!.amount.toString())).toString();
         }
       } else {
-        if (vendorModel.adminCommission!.commissionType!.toLowerCase() ==
-                "Percent".toLowerCase() ||
-            vendorModel.adminCommission!.commissionType?.toLowerCase() ==
-                "Percentage".toLowerCase()) {
-          commission = (double.parse(price) +
-                  (double.parse(price) *
-                      double.parse(
-                          vendorModel.adminCommission!.amount.toString()) /
-                      100))
-              .toString();
+        if (vendorModel.adminCommission!.commissionType!.toLowerCase() == "Percent".toLowerCase() ||
+            vendorModel.adminCommission!.commissionType?.toLowerCase() == "Percentage".toLowerCase()) {
+          commission =
+              (double.parse(price) + (double.parse(price) * double.parse(vendorModel.adminCommission!.amount.toString()) / 100))
+                  .toString();
         } else {
-          commission = (double.parse(price) +
-                  double.parse(vendorModel.adminCommission!.amount.toString()))
-              .toString();
+          commission = (double.parse(price) + double.parse(vendorModel.adminCommission!.amount.toString())).toString();
         }
       }
     } else {
@@ -197,9 +185,7 @@ class Constant {
       if (taxModel.type == "fix") {
         taxAmount = double.parse(taxModel.tax.toString());
       } else {
-        taxAmount = (double.parse(amount.toString()) *
-                double.parse(taxModel.tax!.toString())) /
-            100;
+        taxAmount = (double.parse(amount.toString()) * double.parse(taxModel.tax!.toString())) / 100;
       }
     }
     return taxAmount;
@@ -208,11 +194,8 @@ class Constant {
   static double calculateDiscount({String? amount, CouponModel? offerModel}) {
     double taxAmount = 0.0;
     if (offerModel != null) {
-      if (offerModel.discountType == "Percentage" ||
-          offerModel.discountType == "percentage") {
-        taxAmount = (double.parse(amount.toString()) *
-                double.parse(offerModel.discount.toString())) /
-            100;
+      if (offerModel.discountType == "Percentage" || offerModel.discountType == "percentage") {
+        taxAmount = (double.parse(amount.toString()) * double.parse(offerModel.discount.toString())) / 100;
       } else {
         taxAmount = double.parse(offerModel.discount.toString());
       }
@@ -220,15 +203,11 @@ class Constant {
     return taxAmount;
   }
 
-  static String calculateReview(
-      {required String? reviewCount, required String? reviewSum}) {
-    if (0 == double.parse(reviewSum.toString()) &&
-        0 == double.parse(reviewSum.toString())) {
+  static String calculateReview({required String? reviewCount, required String? reviewSum}) {
+    if (0 == double.parse(reviewSum.toString()) && 0 == double.parse(reviewSum.toString())) {
       return "0";
     }
-    return (double.parse(reviewSum.toString()) /
-            double.parse(reviewCount.toString()))
-        .toStringAsFixed(1);
+    return (double.parse(reviewSum.toString()) / double.parse(reviewCount.toString())).toStringAsFixed(1);
   }
 
   static const userPlaceHolder = 'assets/images/user_placeholder.png';
@@ -245,9 +224,7 @@ class Constant {
 
   static Widget showEmptyView({required String message}) {
     return Center(
-      child: Text(message,
-          style:
-              const TextStyle(fontFamily: AppThemeData.medium, fontSize: 18)),
+      child: Text(message, style: const TextStyle(fontFamily: AppThemeData.medium, fontSize: 18)),
     );
   }
 
@@ -284,11 +261,7 @@ class Constant {
     }
   }
 
-  static String getDistance(
-      {required String lat1,
-      required String lng1,
-      required String lat2,
-      required String lng2}) {
+  static String getDistance({required String lat1, required String lng1, required String lat2, required String lng2}) {
     double distance;
     double distanceInMeters = Geolocator.distanceBetween(
       double.parse(lat1),
@@ -305,8 +278,7 @@ class Constant {
   }
 
   bool hasValidUrl(String? value) {
-    String pattern =
-        r'(http|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?';
+    String pattern = r'(http|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?';
     RegExp regExp = RegExp(pattern);
     if (value == null || value.isEmpty) {
       return false;
@@ -316,13 +288,10 @@ class Constant {
     return true;
   }
 
-  static Future<String> uploadUserImageToFireStorage(
-      File image, String filePath, String fileName) async {
-    Reference upload =
-        FirebaseStorage.instance.ref().child('$filePath/$fileName');
+  static Future<String> uploadUserImageToFireStorage(File image, String filePath, String fileName) async {
+    Reference upload = FirebaseStorage.instance.ref().child('$filePath/$fileName');
     UploadTask uploadTask = upload.putFile(image);
-    var downloadUrl =
-        await (await uploadTask.whenComplete(() {})).ref.getDownloadURL();
+    var downloadUrl = await (await uploadTask.whenComplete(() {})).ref.getDownloadURL();
     return downloadUrl.toString();
   }
 
@@ -345,12 +314,9 @@ class Constant {
 
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 
   static Future<TimeOfDay?> selectTime(context) async {
@@ -395,9 +361,7 @@ class Constant {
 
   static int calculateDifference(DateTime date) {
     DateTime now = DateTime.now();
-    return DateTime(date.year, date.month, date.day)
-        .difference(DateTime(now.year, now.month, now.day))
-        .inDays;
+    return DateTime(date.year, date.month, date.day).difference(DateTime(now.year, now.month, now.day)).inDays;
   }
 
   static String timestampToDate(Timestamp timestamp) {
@@ -421,10 +385,8 @@ class Constant {
   }
 
   static DateTime stringToDate(String openDineTime) {
-    return DateFormat('HH:mm').parse(DateFormat('HH:mm').format(
-        DateFormat("hh:mm a").parse((Intl.getCurrentLocale() == "en_US")
-            ? openDineTime
-            : openDineTime.toLowerCase())));
+    return DateFormat('HH:mm').parse(DateFormat('HH:mm')
+        .format(DateFormat("hh:mm a").parse((Intl.getCurrentLocale() == "en_US") ? openDineTime : openDineTime.toLowerCase())));
   }
 
   static LanguageModel getLanguage() {
@@ -437,15 +399,13 @@ class Constant {
     return "#${(orderId).substring(orderId.length - 10)}";
   }
 
-  static checkPermission(
-      {required BuildContext context, required Function() onTap}) async {
+  static checkPermission({required BuildContext context, required Function() onTap}) async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
     if (permission == LocationPermission.denied) {
-      ShowToastDialog.showToast(
-          "You have to allow location permission to use your location");
+      ShowToastDialog.showToast("You have to allow location permission to use your location");
     } else if (permission == LocationPermission.deniedForever) {
       showDialog(
         context: context,
@@ -462,10 +422,8 @@ class Constant {
     int crossings = 0;
     for (int i = 0; i < polygon.length; i++) {
       int next = (i + 1) % polygon.length;
-      if (polygon[i].latitude <= point.latitude &&
-              polygon[next].latitude > point.latitude ||
-          polygon[i].latitude > point.latitude &&
-              polygon[next].latitude <= point.latitude) {
+      if (polygon[i].latitude <= point.latitude && polygon[next].latitude > point.latitude ||
+          polygon[i].latitude > point.latitude && polygon[next].latitude <= point.latitude) {
         double edgeLong = polygon[next].longitude - polygon[i].longitude;
         double edgeLat = polygon[next].latitude - polygon[i].latitude;
         double interpol = (point.latitude - polygon[i].latitude) / edgeLat;
@@ -485,19 +443,14 @@ class Constant {
       ssl: true,
       allowInsecure: true);
 
-  static sendMail(
-      {String? subject,
-      String? body,
-      bool? isAdmin = false,
-      List<dynamic>? recipients}) async {
+  static sendMail({String? subject, String? body, bool? isAdmin = false, List<dynamic>? recipients}) async {
     // Create our message.
     if (mailSettings != null) {
       if (isAdmin == true) {
         recipients!.add(mailSettings!.userName.toString());
       }
       final message = Message()
-        ..from = Address(mailSettings!.userName.toString(),
-            mailSettings!.fromName.toString())
+        ..from = Address(mailSettings!.userName.toString(), mailSettings!.fromName.toString())
         ..recipients = recipients!
         ..subject = subject
         ..text = body
@@ -521,12 +474,10 @@ class Constant {
     // await connection.send(message);
   }
 
-  static Uri createCoordinatesUrl(double latitude, double longitude,
-      [String? label]) {
+  static Uri createCoordinatesUrl(double latitude, double longitude, [String? label]) {
     Uri uri;
     if (kIsWeb) {
-      uri = Uri.https('www.google.com', '/maps/search/',
-          {'api': '1', 'query': '$latitude,$longitude'});
+      uri = Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': '$latitude,$longitude'});
     } else if (Platform.isAndroid) {
       var query = '$latitude,$longitude';
       if (label != null) query += '($label)';
@@ -536,16 +487,14 @@ class Constant {
       if (label != null) params['q'] = label;
       uri = Uri.https('maps.apple.com', '/', params);
     } else {
-      uri = Uri.https('www.google.com', '/maps/search/',
-          {'api': '1', 'query': '$latitude,$longitude'});
+      uri = Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': '$latitude,$longitude'});
     }
 
     return uri;
   }
 
   static sendOrderEmail({required OrderModel orderModel}) async {
-    EmailTemplateModel? emailTemplateModel =
-        await FireStoreUtils.getEmailTemplates(newOrderPlaced);
+    EmailTemplateModel? emailTemplateModel = await FireStoreUtils.getEmailTemplates(newOrderPlaced);
     if (emailTemplateModel != null) {
       String firstHTML = """
        <table style="width: 100%; border-collapse: collapse; border: 1px solid rgb(0, 0, 0);">
@@ -562,11 +511,9 @@ class Constant {
     """;
 
       String newString = emailTemplateModel.message.toString();
-      newString = newString.replaceAll("{username}",
-          "${Constant.userModel!.firstName} ${Constant.userModel!.lastName}");
+      newString = newString.replaceAll("{username}", "${Constant.userModel!.firstName} ${Constant.userModel!.lastName}");
       newString = newString.replaceAll("{orderid}", orderModel.id.toString());
-      newString = newString.replaceAll("{date}",
-          DateFormat('yyyy-MM-dd').format(orderModel.createdAt!.toDate()));
+      newString = newString.replaceAll("{date}", DateFormat('yyyy-MM-dd').format(orderModel.createdAt!.toDate()));
       newString = newString.replaceAll(
         "{address}",
         orderModel.address!.getFullAddress(),
@@ -593,20 +540,15 @@ class Constant {
         tipValue = double.parse(orderModel.tipAmount.toString());
       }
       for (var element in orderModel.products!) {
-        if (element.extrasPrice != null &&
-            element.extrasPrice!.isNotEmpty &&
-            double.parse(element.extrasPrice!) != 0.0) {
-          total += double.parse(element.quantity.toString()) *
-              double.parse(element.extrasPrice!);
+        if (element.extrasPrice != null && element.extrasPrice!.isNotEmpty && double.parse(element.extrasPrice!) != 0.0) {
+          total += double.parse(element.quantity.toString()) * double.parse(element.extrasPrice!);
         }
-        total += double.parse(element.quantity.toString()) *
-            double.parse(element.price.toString());
+        total += double.parse(element.quantity.toString()) * double.parse(element.price.toString());
 
         List<dynamic>? addon = element.extras;
         String extrasDisVal = '';
         for (int i = 0; i < addon!.length; i++) {
-          extrasDisVal +=
-              '${addon[i].toString().replaceAll("\"", "")} ${(i == addon.length - 1) ? "" : ","}';
+          extrasDisVal += '${addon[i].toString().replaceAll("\"", "")} ${(i == addon.length - 1) ? "" : ","}';
         }
         String product = """
         <tr>
@@ -624,8 +566,7 @@ class Constant {
       }
 
       if (orderModel.specialDiscount!.isNotEmpty) {
-        specialDiscount = double.parse(
-            orderModel.specialDiscount!['special_discount'].toString());
+        specialDiscount = double.parse(orderModel.specialDiscount!['special_discount'].toString());
       }
 
       if (orderModel.couponId != null && orderModel.couponId!.isNotEmpty) {
@@ -635,18 +576,14 @@ class Constant {
       List<String> taxHtmlList = [];
       if (taxList != null) {
         for (var element in taxList!) {
-          taxAmount = taxAmount +
-              calculateTax(
-                  amount: (total - discount - specialDiscount).toString(),
-                  taxModel: element);
+          taxAmount = taxAmount + calculateTax(amount: (total - discount - specialDiscount).toString(), taxModel: element);
           String taxHtml =
               """<span style="font-size: 1rem;">${element.title}: ${amountShow(amount: calculateTax(amount: (total - discount - specialDiscount).toString(), taxModel: element).toString())}${taxList!.indexOf(element) == taxList!.length - 1 ? "</span>" : "<br></span>"}""";
           taxHtmlList.add(taxHtml);
         }
       }
 
-      var totalamount = orderModel.deliveryCharge == null ||
-              orderModel.deliveryCharge!.isEmpty
+      var totalamount = orderModel.deliveryCharge == null || orderModel.deliveryCharge!.isEmpty
           ? total + taxAmount - discount - specialDiscount
           : total +
               taxAmount +
@@ -655,33 +592,23 @@ class Constant {
               discount -
               specialDiscount;
 
-      newString = newString.replaceAll(
-          "{subtotal}", amountShow(amount: total.toString()));
-      newString =
-          newString.replaceAll("{coupon}", orderModel.couponId.toString());
-      newString = newString.replaceAll("{discountamount}",
-          amountShow(amount: orderModel.discount.toString()));
+      newString = newString.replaceAll("{subtotal}", amountShow(amount: total.toString()));
+      newString = newString.replaceAll("{coupon}", orderModel.couponId.toString());
+      newString = newString.replaceAll("{discountamount}", amountShow(amount: orderModel.discount.toString()));
       newString = newString.replaceAll("{specialcoupon}", specialLabel);
-      newString = newString.replaceAll("{specialdiscountamount}",
-          amountShow(amount: specialDiscount.toString()));
-      newString = newString.replaceAll(
-          "{shippingcharge}", amountShow(amount: deliveryCharge.toString()));
-      newString = newString.replaceAll(
-          "{tipamount}", amountShow(amount: tipValue.toString()));
-      newString = newString.replaceAll(
-          "{totalAmount}", amountShow(amount: totalamount.toString()));
+      newString = newString.replaceAll("{specialdiscountamount}", amountShow(amount: specialDiscount.toString()));
+      newString = newString.replaceAll("{shippingcharge}", amountShow(amount: deliveryCharge.toString()));
+      newString = newString.replaceAll("{tipamount}", amountShow(amount: tipValue.toString()));
+      newString = newString.replaceAll("{totalAmount}", amountShow(amount: totalamount.toString()));
 
       String tableHTML = htmlList.join();
       String lastHTML = "</tbody></table>";
-      newString = newString.replaceAll(
-          "{productdetails}", firstHTML + tableHTML + lastHTML);
+      newString = newString.replaceAll("{productdetails}", firstHTML + tableHTML + lastHTML);
       newString = newString.replaceAll("{taxdetails}", taxHtmlList.join());
-      newString = newString.replaceAll("{newwalletbalance}.",
-          amountShow(amount: Constant.userModel!.walletAmount.toString()));
+      newString = newString.replaceAll("{newwalletbalance}.", amountShow(amount: Constant.userModel!.walletAmount.toString()));
 
       String subjectNewString = emailTemplateModel.subject.toString();
-      subjectNewString =
-          subjectNewString.replaceAll("{orderid}", orderModel.id.toString());
+      subjectNewString = subjectNewString.replaceAll("{orderid}", orderModel.id.toString());
       await sendMail(
           subject: subjectNewString,
           isAdmin: emailTemplateModel.isSendToAdmin,
@@ -694,11 +621,7 @@ class Constant {
     const R = 6371; // Earth's radius in km
     final dLat = _degToRad(lat2 - lat1);
     final dLon = _degToRad(lon2 - lon1);
-    final a = sin(dLat / 2) * sin(dLat / 2) +
-        cos(_degToRad(lat1)) *
-            cos(_degToRad(lat2)) *
-            sin(dLon / 2) *
-            sin(dLon / 2);
+    final a = sin(dLat / 2) * sin(dLat / 2) + cos(_degToRad(lat1)) * cos(_degToRad(lat2)) * sin(dLon / 2) * sin(dLon / 2);
     final c = 2 * atan2(sqrt(a), sqrt(1 - a));
     return R * c;
   }
